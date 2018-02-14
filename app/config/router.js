@@ -10,7 +10,6 @@ export const DefaultNav = StackNavigator({
       screen: Login,
       navigationOptions: {
           title: 'Sign Up',
-          gesturesEnabled: false,
           header: null
           
       }
@@ -19,9 +18,9 @@ export const DefaultNav = StackNavigator({
       screen: ClassList,
       navigationOptions: {
           title: 'Class Selection',
-          gesturesEnabled: false,
+          
           header: null,
-          gesturesEnabled: false
+
       }
   },
   ClassStream: {

@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import { SafeAreaView, KeyboardAvoidingView ,TextInput  ,AppRegistry, Picker, StyleSheet, Text, TouchableHighlight, View, Image, ImageBackground, ListView, Platform, Dimensions, TouchableOpacity} from 'react-native';
 import SocketIOClient from 'socket.io-client';
 import { RTCPeerConnection, RTCMediaStream, RTCIceCandidate, RTCSessionDescription, RTCView, MediaStreamTrack, getUserMedia, } from 'react-native-webrtc';
-import FBSDK, { LoginManager, LoginButton } from 'react-native-fbsdk';
 import { StackNavigator, TabNavigator, NavigationActions } from 'react-navigation';
 import { SocialIcon, Icon, Button, Input } from 'react-native-elements';
 import InCallManager from 'react-native-incall-manager';
