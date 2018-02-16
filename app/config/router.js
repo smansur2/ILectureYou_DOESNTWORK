@@ -4,23 +4,34 @@ import { StackNavigator, TabNavigator, NavigationActions } from 'react-navigatio
 import Login from '../screens/Login'
 import ClassStream from '../screens/ClassStream';
 import ClassList from '../screens/ClassList';
+import Register from '../screens/Register';
 
 export const DefaultNav = StackNavigator({
   Login: {
       screen: Login,
       navigationOptions: {
-          title: 'Sign Up',
+          gesturesEnabled: false,
           header: null
           
       }
   },
+
+  Register: {
+    screen: Register,
+    navigationOptions: {
+        gesturesEnabled: false,
+        header: null
+        
+    }
+},
+
   ClassList: {
       screen: ClassList,
       navigationOptions: {
           title: 'Class Selection',
-          
+          gesturesEnabled: false,
           header: null,
-
+          gesturesEnabled: false
       }
   },
   ClassStream: {

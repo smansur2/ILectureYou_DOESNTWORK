@@ -8,21 +8,20 @@ import {firebase} from '../../services/firebase';
 
 const logo = require('../../images/one.jpg')
 
-export default class Login extends Component { 
+export default class Register extends Component { 
     constructor(props) {
       super(props)
       this.state = {
         email: '',
-        password:''
+        password:'',
+        password2: ''
       }
     }
     
 
-    static navigationOptions = {
-      title: 'FacebookLogin'
-    }
+    
 
-    login = () => {
+    register = () => {
      
      try {
          if (this.state.email === "") {
@@ -31,18 +30,26 @@ export default class Login extends Component {
          if (this.state.password === "") {
              throw new Error("Please provide a password.");
          }
-         else if (firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)) {
-           this.props.navigation.navigate('ClassList')     
+
+         if (this.state.password !== this.state.password2) {
+             throw new Error("Passwords do not match");
          }
+
+         else if (this.state.password === this.state.password2){
+             firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password);
+             this.props.navigation.navigate('ClassList');
+         }
+         
      } 
+     
 
      catch(e) {
          alert(e);
      }
    }
 
-   register = () => {
-     this.props.navigation.navigate('Register');
+   back = () => {
+       this.props.navigation.goBack();
    }
 
 
@@ -70,7 +77,7 @@ export default class Login extends Component {
                    </Text>
 
                    <Text style = {loginstyles.header}>
-                     Login
+                     Register
 
                    </Text>
                    
@@ -95,22 +102,33 @@ export default class Login extends Component {
                    color = '#FFF'
                    />
 
+                   <Input
+                   containerStyle = {loginstyles.input}
+                   secureTextEntry = {true}
+                   placeholder='Confirm Password'
+                   placeholderTextColor = '#FFF'
+                   onChangeText={(text) => this.setState({password2: text})} 
+                   value = {this.state.password2}
+                   color = '#FFF'
+                   />
+
+
                    <Button 
-                   text = 'Login'
+                   text = 'Register'
                    raised
                    backgroundColor = '#FFF'
                    small
                    textStyle = {{fontWeight: 'bold'}}
-                   onPress = {this.login}
+                   onPress = {this.register}
                    buttonStyle={loginstyles.loginButton} /> 
 
                    <Button 
-                   text = 'Signup'
+                   text = 'Back'
                    clear
                    //backgroundColor = '#3BA9FF'
                    small
                    textStyle = {{fontWeight: 'bold', color: '#909497', fontSize: 15}}
-                   onPress = {this.register} />
+                   onPress = {this.back} />
 
                </View>
                
@@ -181,7 +199,7 @@ const loginstyles = StyleSheet.create({
      fontWeight: '900', 
      color: '#FFF', 
      fontSize: 40,
-     marginRight: 195,
+     marginRight: 130,
      paddingBottom: 10,
 
    }
